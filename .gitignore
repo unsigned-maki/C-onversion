@@ -70,3 +70,6 @@ CMakeUserPresets.json
 !.vscode/tasks.json
 !.vscode/launch.json
 *.code-workspace
+
+# Other build tools
+run.ps1
