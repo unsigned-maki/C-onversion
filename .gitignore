@@ -73,3 +73,4 @@ CMakeUserPresets.json
 
 # Other build tools
 run.ps1
+run.bat
