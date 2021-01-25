@@ -23,7 +23,7 @@ SOFTWARE.
 **/
 
 #include <stdlib.h>
-#include <stdio.h>
+
 
 typedef char *(*to_upper)(char *lower);
 
