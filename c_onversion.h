@@ -25,7 +25,7 @@ SOFTWARE.
 #ifndef C_ONVERSION_
 #define C_ONVERSION_
 
-typedef unsigned char *(*to_upper)(unsigned char *lower);
+typedef char *(*to_upper)(char *lower);
 
 typedef char *(*to_lower)(char *upper);
 
