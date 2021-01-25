@@ -59,7 +59,7 @@ Converter;
  *
  */
 
-const unsigned int ascii_reverse_lookup[123] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+const unsigned int ASCII_REVERSE_LOOKUP[123] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
 	22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
 	41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
 	60, 61, 62, 63, 64, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108,
@@ -75,7 +75,7 @@ const unsigned int ascii_reverse_lookup[123] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1
  *@return size_t length of the passed array of characters.
  */
 
-size_t length(char *c_str);
+static inline size_t length(char *c_str);
 
 /**
  *@brief Copies a passed array of characters and converts all lower-case characters to upper-case.
@@ -103,7 +103,7 @@ char *char_to_lower(char *upper);
 
 Converter* new_converter();
 
-size_t length(char *c_str)
+static inline size_t length(char *c_str)
 {
 	size_t length;
 	for (length = 0; c_str[length] != '\0'; length++);
@@ -119,7 +119,7 @@ char *char_to_upper(char *lower)
 	for (size_t i = 0; i < lower_length; i++)
 	{
 		if ((lower[i] < 123 && lower[i] >= 0) && (lower[i] < 65 || lower[i] > 90))
-			upper[i] = ascii_reverse_lookup[lower[i]];
+			upper[i] = ASCII_REVERSE_LOOKUP[lower[i]];
 		else
 			upper[i] = lower[i];
 	}
@@ -136,7 +136,7 @@ char *char_to_lower(char *upper)
 	for (size_t i = 0; i < upper_length; i++)
 	{
 		if (upper[i] < 97 && upper[i] >= 0) {
-			lower[i] = ascii_reverse_lookup[upper[i]];
+			lower[i] = ASCII_REVERSE_LOOKUP[upper[i]];
 		}
 		else
 			lower[i] = upper[i];
