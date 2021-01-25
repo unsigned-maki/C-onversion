@@ -1,4 +1,4 @@
-/**  
+/** 
 MIT License
 
 Copyright (c) 2021 Niclas (unsigned-maki)
@@ -23,6 +23,7 @@ SOFTWARE.
 **/
 
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef char *(*to_upper)(char *lower);
 
@@ -54,8 +55,22 @@ typedef struct
 Converter;
 
 /**
+ *@brief ASCII lookup list with each alphabetical character replaced with it's opposite.
+ *
+ */
+
+const unsigned int ascii_reverse_lookup[123] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+	22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+	41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+	60, 61, 62, 63, 64, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108,
+	109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 91, 92,
+	93, 94, 95, 96, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
+	81, 82, 83, 84, 85, 86, 87, 88, 89, 90
+};
+
+/**
  *@brief Determines the length of a passed array of characters.   
- * 
+ *
  *@param c_str pointer to an array of characters.
  *@return size_t length of the passed array of characters.
  */
@@ -64,7 +79,7 @@ size_t length(char *c_str);
 
 /**
  *@brief Copies a passed array of characters and converts all lower-case characters to upper-case.
- * 
+ *
  *@param lower pointer to an array of characters containing lower-case characters. 
  *@return char* pointer to a copy of the passed array with all lower-case characters converted to upper-case.
  */
@@ -73,7 +88,7 @@ char *char_to_upper(char *lower);
 
 /**
  *@brief Copies a passed array of characters and converts all lower-case characters to lower-case.
- * 
+ *
  *@param upper pointer to an array of characters containing upper-case characters. 
  *@return char* pointer to a copy of the passed array with all upper-case characters converted to lower-case.
  */
@@ -82,7 +97,7 @@ char *char_to_lower(char *upper);
 
 /**
  *@brief Constructs a Converter struct and returns a pointer to it. 
- * 
+ *
  *@return Converter* pointer to Converter struct.
  */
 
@@ -103,90 +118,10 @@ char *char_to_upper(char *lower)
 
 	for (size_t i = 0; i < lower_length; i++)
 	{
-		switch (lower[i])
-		{
-			case 'a':
-				upper[i] = 'A';
-				break;
-			case 'b':
-				upper[i] = 'B';
-				break;
-			case 'c':
-				upper[i] = 'C';
-				break;
-			case 'd':
-				upper[i] = 'D';
-				break;
-			case 'e':
-				upper[i] = 'E';
-				break;
-			case 'f':
-				upper[i] = 'F';
-				break;
-			case 'g':
-				upper[i] = 'G';
-				break;
-			case 'h':
-				upper[i] = 'H';
-				break;
-			case 'i':
-				upper[i] = 'I';
-				break;
-			case 'j':
-				upper[i] = 'J';
-				break;
-			case 'k':
-				upper[i] = 'K';
-				break;
-			case 'l':
-				upper[i] = 'L';
-				break;
-			case 'm':
-				upper[i] = 'M';
-				break;
-			case 'n':
-				upper[i] = 'N';
-				break;
-			case 'o':
-				upper[i] = 'O';
-				break;
-			case 'p':
-				upper[i] = 'P';
-				break;
-			case 'q':
-				upper[i] = 'Q';
-				break;
-			case 'r':
-				upper[i] = 'R';
-				break;
-			case 's':
-				upper[i] = 'S';
-				break;
-			case 't':
-				upper[i] = 'T';
-				break;
-			case 'u':
-				upper[i] = 'U';
-				break;
-			case 'v':
-				upper[i] = 'V';
-				break;
-			case 'w':
-				upper[i] = 'W';
-				break;
-			case 'x':
-				upper[i] = 'X';
-				break;
-			case 'y':
-				upper[i] = 'Y';
-				break;
-			case 'z':
-				upper[i] = 'Z';
-				break;
-			default:
-				upper[i] = lower[i];
-				break;
-		}
+		if ((lower[i] < 123 && lower[i] >= 0) && (lower[i] < 65 || lower[i] > 90))
+			upper[i] = ascii_reverse_lookup[lower[i]];
+		else
+			upper[i] = lower[i];
 	}
 
 	return upper;
@@ -200,101 +135,22 @@ char *char_to_lower(char *upper)
 
 	for (size_t i = 0; i < upper_length; i++)
 	{
-		switch (upper[i])
-		{
-			case 'A':
-				lower[i] = 'a';
-				break;
-			case 'B':
-				lower[i] = 'b';
-				break;
-			case 'C':
-				lower[i] = 'c';
-				break;
-			case 'D':
-				lower[i] = 'd';
-				break;
-			case 'E':
-				lower[i] = 'e';
-				break;
-			case 'F':
-				lower[i] = 'f';
-				break;
-			case 'G':
-				lower[i] = 'g';
-				break;
-			case 'H':
-				lower[i] = 'h';
-				break;
-			case 'I':
-				lower[i] = 'i';
-				break;
-			case 'J':
-				lower[i] = 'j';
-				break;
-			case 'K':
-				lower[i] = 'k';
-				break;
-			case 'L':
-				lower[i] = 'l';
-				break;
-			case 'M':
-				lower[i] = 'm';
-				break;
-			case 'N':
-				lower[i] = 'n';
-				break;
-			case 'O':
-				lower[i] = 'o';
-				break;
-			case 'P':
-				lower[i] = 'p';
-				break;
-			case 'Q':
-				lower[i] = 'q';
-				break;
-			case 'R':
-				lower[i] = 'r';
-				break;
-			case 'S':
-				lower[i] = 's';
-				break;
-			case 'T':
-				lower[i] = 't';
-				break;
-			case 'U':
-				lower[i] = 'u';
-				break;
-			case 'V':
-				lower[i] = 'v';
-				break;
-			case 'W':
-				lower[i] = 'w';
-				break;
-			case 'X':
-				lower[i] = 'x';
-				break;
-			case 'Y':
-				lower[i] = 'y';
-				break;
-			case 'Z':
-				lower[i] = 'z';
-				break;
-			default:
-				lower[i] = upper[i];
-				break;
+		if (upper[i] < 97 && upper[i] >= 0) {
+			lower[i] = ascii_reverse_lookup[upper[i]];
 		}
+		else
+			lower[i] = upper[i];
 	}
 
 	return lower;
 }
 
-Converter *new_converter()
+Converter* new_converter()
 {
 	Converter *converter = malloc(sizeof(Converter));
-	Char character = { 
-        &char_to_upper,
-        &char_to_lower
+	Char character = {
+		&char_to_upper, 
+		&char_to_lower
 	};
 	converter->character = character;
 	return converter;
